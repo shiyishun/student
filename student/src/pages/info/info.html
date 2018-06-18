@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu" ></ion-icon>
+    </button>
+    <ion-title>考勤信息</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="infocard">
+  <ion-card >
+    <img src="assets/img/label-1.jpg">
+
+    <div class="card-title">数据库</div>
+    <div class="card-subtitle">迟到：0次</div>
+    <div class="card-subtitle-1">请假：0次</div>
+    <div class="card-subtitle-2">旷课：0次</div>
+
+  </ion-card>
+
+  <ion-card >
+    <img src="assets/img/label-1.jpg">
+
+    <div class="card-title">C++</div>
+    <div class="card-subtitle">迟到：0次</div>
+    <div class="card-subtitle-1">请假：1次</div>
+    <div class="card-subtitle-2">旷课：0次</div>
+
+  </ion-card>
+</ion-content>
+
+<ion-content class="infocard">
+
+ <ion-card *ngFor="let item of record">
+    <img src="assets/img/label-1.jpg">
+
+    <div class="card-title">{{item.c.cnameAndID.courseName}}</div>
+    <div class="card-subtitle">迟到：{{item.l}}次</div>
+    <div class="card-subtitle-1">请假：{{item.q}}次</div>
+    <div class="card-subtitle-2">旷课：{{item.k}}次</div>
+
+    <!--<ion-card-header>-->
+      <!--课程：{{item.c.cnameAndID.courseName}}-->
+    <!--</ion-card-header>-->
+    <!--<ion-card-content>-->
+      <!--<p>迟到：{{item.l}}次</p>-->
+      <!--<p>请假：{{item.q}}次</p>-->
+      <!--<p>旷课：{{item.k}}次</p>-->
+
+    <!--</ion-card-content>-->
+  </ion-card>
+
+</ion-content>
+
+

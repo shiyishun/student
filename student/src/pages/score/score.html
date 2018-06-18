@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>平时成绩</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="normalpage">
+  <ion-card *ngFor="let item of qscores">
+    <img src="assets/img/label-2.jpg">
+
+    <div class="card-title">{{item.courseName}}</div>
+    <div class="card-subtitle">课堂作业得分:{{item.score}}</div>
+    <div class="card-subtitle-1">日期：{{item.attendanceDate}}</div>
+
+  </ion-card>
+</ion-content>
