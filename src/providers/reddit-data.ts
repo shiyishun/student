@@ -12,6 +12,7 @@ import 'rxjs/add/operator/map';
 export class RedditData {
 
   hurl = 'http://localhost:8080';
+  // hurl = 'http://119.29.60.141:8888';
 
 
   constructor(public http: Http) {

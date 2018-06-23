@@ -15,7 +15,7 @@
 
 
   <ion-list no-lines="" class="courses">
-    <ion-list-header text-center="" style="font-size: 1.5em;">今日课程<br>点击进行签到或请假</ion-list-header>
+    <ion-list-header text-center="" style="font-size: 1.5em;">今日待签到课程<br>点击进行签到或请假</ion-list-header>
   <div *ngFor="let course of courses">
       <button ion-button text-center outline block color="primary"
               (click)="courseSelected($event, course)">
