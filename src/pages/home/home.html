@@ -20,9 +20,8 @@
       <button ion-button text-center outline block color="primary"
               (click)="courseSelected($event, course)">
           {{ course.course_name}}<br>
-          第{{course.start_period}}-{{course.end_period}}节
-         <br>
-          {{ course.class_location }}
+          第{{course.start_period}}-{{course.end_period}}节  {{ course.class_location }}
+
     </button>
   </div>
   </ion-list>

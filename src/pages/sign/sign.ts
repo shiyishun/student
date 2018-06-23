@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
 
-import {LoadingController, ToastController} from 'ionic-angular';
+import {LoadingController, ToastController, NavController} from 'ionic-angular';
 import {GlobalStorage} from '../../providers/global-storage'
 import {RedditData} from '../../providers/reddit-data'
+import {HomePage} from "../home/home";
 
 @Component({
   selector: 'page-sign',
@@ -23,7 +24,8 @@ export class SignPage {
   lie: string;
 
 
-  constructor(public toastCtrl: ToastController, public loadingCtrl: LoadingController, public courseData: RedditData, public globalStorage: GlobalStorage) {
+  constructor(public toastCtrl: ToastController, public navCtrl: NavController,
+              public loadingCtrl: LoadingController, public courseData: RedditData, public globalStorage: GlobalStorage) {
     globalStorage.getStorage('userId').then(res=>{
       this.uid = res.toString();
     });
@@ -74,6 +76,7 @@ export class SignPage {
           });
           toast.present();
           loading.present();
+          this.navCtrl.setRoot(HomePage);
         }
       });
       // console.log('sign page final' + this.c + ' ' + res + ' ' + w);

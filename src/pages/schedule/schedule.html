@@ -19,10 +19,8 @@
   <ion-list no-lines="" class="courses">
     <div *ngFor="let course of courses">
       <button ion-button text-center outline block color="primary" >
-        {{ course.course_name}}<br>
-        {{course.timeInfo}}
-        <br>
-        {{ course.class_location }}
+        {{ course.course_name}} ({{course.class_date}}周)<br>
+        {{course.timeInfo}}  {{ course.class_location }}
       </button>
     </div>
   </ion-list>
