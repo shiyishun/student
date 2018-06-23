@@ -17,6 +17,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {PositionPage} from "../pages/position/position";
 import { RedditData} from '../providers/reddit-data';
 import {GlobalStorage} from '../providers/global-storage'
+import {SchedulePage} from "../pages/schedule/schedule";
 
 
 
@@ -30,7 +31,7 @@ import {GlobalStorage} from '../providers/global-storage'
     SignPage,
     InfoPage,
     ScorePage,
-
+    SchedulePage,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +49,7 @@ import {GlobalStorage} from '../providers/global-storage'
     SignPage,
     InfoPage,
     ScorePage,
-
+    SchedulePage,
   ],
   providers: [
     StatusBar,

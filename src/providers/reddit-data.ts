@@ -24,19 +24,23 @@ export class RedditData {
   }
 
   postLogin(id, password) {
-    let url = this.hurl + '/shhTest/personnelaction/CheckPersonnel?id=' + id + '&password=' + password;
-    return this.http.get(url).map(res => res.json());
-  }
-
-  getPersonById(id) {
-    let url = this.hurl + '/shhTest/personnelaction/getPersonnelByID?id=' + id;
+    // let url = this.hurl + '/shhTest/personnelaction/CheckPersonnel?id=' + id + '&password=' + password;
+    let url = this.hurl + '/xsdk/app/student/login?loginName='+id+'&password='+password;
     return this.http.get(url).map(res => res.json());
   }
 
   getCoursesById(id) {
-    let url = this.hurl + '/shhTest/markaction/getMarkByID?id=' + id;
+    // let url = this.hurl + '/shhTest/personnelaction/getPersonnelByID?id=' + id;
+    let url = this.hurl + '/xsdk/app/student/getCourseList?param='+id;
     return this.http.get(url).map(res => res.json());
   }
+
+  getAllCoursesById(id) {
+    // let url = this.hurl + '/shhTest/personnelaction/getPersonnelByID?id=' + id;
+    let url = this.hurl + '/xsdk/app/student/getAllCourseList?userId='+id;
+    return this.http.get(url).map(res => res.json());
+  }
+
 
   getCourseByName(name) {
     let url = this.hurl + '/shhTest/courseaction/getCourseByName?coursename=' + name;
@@ -65,10 +69,18 @@ export class RedditData {
     let url = this.hurl + '/shhTest/questionaction/getQuestionByCoursenameAndID?courseName=' + cn + '&id=' + id;
     return this.http.get(url).map(res => res.json());
   }
-
-  updateCallTheRoll(id, cp, cn, cs) {
-    let url = this.hurl + '/shhTest/calltherollaction/updateCallTheRoll?calldate=1' + '&id=' + id + '&callposition=' + cp
-      + '&coursename=' + cn + '&callstate=' + cs + '&autoid=0';
+  getScore(uid){
+    let url = this.hurl + '/xsdk/app/student/getScoreList?userId=' + uid;
+    return this.http.get(url).map(res => res.json());
+  }
+  getRecordList(uid){
+    let url = this.hurl + '/xsdk/app/student/getRecordList?userId=' + uid;
+    return this.http.get(url).map(res => res.json());
+  }
+  updateCallTheRoll(cid,uid, cp, courseTimeId, cs) {
+    // let url = this.hurl + '/shhTest/calltherollaction/updateCallTheRoll?calldate=1' + '&id=' + id + '&callposition=' + cp
+    //   + '&coursename=' + cn + '&callstate=' + cs + '&autoid=0';
+    let url = this.hurl + '/xsdk/app/student/signIn?cid='+cid+'&uid='+uid+'&callPosition='+cp+'&callState='+cs+'&courseTimeId='+courseTimeId;
     console.log(url);
     return this.http.get(url).map(res => res.json());
   }

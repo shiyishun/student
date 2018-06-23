@@ -17,34 +17,32 @@ export class SignPage {
   col: any;
   rows: number[];
   cols: number[];
-
+  cid:string;
+  uid:string;
   pai: string;
   lie: string;
 
 
   constructor(public toastCtrl: ToastController, public loadingCtrl: LoadingController, public courseData: RedditData, public globalStorage: GlobalStorage) {
+    globalStorage.getStorage('userId').then(res=>{
+      this.uid = res.toString();
+    });
     globalStorage.getStorage('courseName').then(res => {
-      this.c = res;
+      this.c = res.course_name;
+      this.site = res.class_shape.split('*');
+      this.row = this.site[0];
+      this.col = this.site[1];
+      console.log('sign page row ' + this.row);
+      console.log('sign page col ' + this.col);
+      this.cols = [];
+      this.rows = [];
+      for (let i = 1; i <= this.col; i++) {
+        this.cols.push(i);
+      }
+      for (let i = 1; i <= this.row; i++) {
+        this.rows.push(i);
+      }
       console.log('sign page ' + res);
-      courseData.getCourseByName(res).subscribe(result => {
-        this.site = result.course.shape.split('*');
-        this.row = this.site[0];
-        this.col = this.site[1];
-        console.log('sign page row ' + this.row);
-        console.log('sign page col ' + this.col);
-        this.cols = [];
-        this.rows = [];
-        for (let i = 1; i <= this.col; i++) {
-          // console.log('cols ' + i);
-          this.cols.push(i);
-        }
-        for (let i = 1; i <= this.row; i++) {
-          // console.log('cols ' + i);
-          this.rows.push(i);
-        }
-        // console.log('sign page sign ' + this.sign[0] + ':' + this.sign[1]);
-        // console.log('sign page getCourse ' + result.course.shape);
-      });
     });
 
 
@@ -55,16 +53,11 @@ export class SignPage {
     let loading = this.loadingCtrl.create({
       duration: 1000
     });
-    // console.log('sign page sign() time ' + this.event);
-     //console.log('sign page sign() pai ' + this.pai);
-     //console.log('sign page sign() lie ' + this.lie);
     let w = this.pai + '*' + this.lie;
-
-    this.globalStorage.getStorage('stuId').then(res => {
-      //console.log('sign page ' + this.c + ' ' + res + ' ' + w);
-      this.courseData.updateCallTheRoll(res, w, this.c, 1).subscribe(r => {
+    this.globalStorage.getStorage('courseName').then(res => {
+      this.courseData.updateCallTheRoll(res.course_id, this.uid, w, res.course_time_id, 1).subscribe(r => {
         console.log(r.state);
-        if(r.state == '1') {
+        if(r.state == '0') {
           let toast = this.toastCtrl.create({
             message: '签到成功',
             duration: 1000,

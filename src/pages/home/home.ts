@@ -17,21 +17,15 @@ export class HomePage {
   // record:Array<{c:string,k:string}>;
 
   constructor(public toastCtrl: ToastController, private stuData: RedditData, private globalStorage: GlobalStorage, public navCtrl: NavController) {
-
-    globalStorage.getStorage('stuId').then((res) => {
+    this.name = globalStorage.getStorage('userName');
+    globalStorage.getStorage('userId').then((res) => {
       // this.stuInf = res;
+
       console.log('home page ' + res);
-      stuData.getPersonById(res).subscribe(
-        result => {
-          this.name = result.personnel.Pname;
-          this.id = result.personnel.ID;
-          console.log('home page 1' + result.personnel.Pname);
-        }
-      );
 
       stuData.getCoursesById(res).subscribe(
         result => {
-          this.courses = result.marks;
+          this.courses = result.data;
           // for(let item of result.marks) {
           //   this.courses.push(item);
           // }
@@ -39,25 +33,25 @@ export class HomePage {
           // console.log('home page 2' + i.cnameAndID.courseName);
           // }
           // this.record = [];
-          for (let item of this.courses) {
-            stuData.countCallTheRoll(res, 3, item.cnameAndID.courseName).subscribe(r2 => {
-              // this.record.push({c:item,k: r2.countnum});
-              stuData.getCourseByName(item).subscribe(r3 => {
-                console.log('home page r3 ' + r2.countnum);
-                if (parseInt(r2.countnum) >= 2) {
-                  console.log('home page r2 ' + r2.countnum);
-                  let toast = this.toastCtrl.create({
-                    message: '课程：'+item.cnameAndID.courseName + '已旷课'+ r2.countnum +'次，超过该课程最大旷课数',
-                    duration: 4000,
-                    position: 'middle',
-                    showCloseButton: true,
-                    closeButtonText: 'OK'
-                  });
-                  toast.present();
-                }
-              });
-            });
-          }
+          // for (let item of this.courses) {
+          //   stuData.countCallTheRoll(res, 3, item.cnameAndID.courseName).subscribe(r2 => {
+          //     // this.record.push({c:item,k: r2.countnum});
+          //     stuData.getCourseByName(item).subscribe(r3 => {
+          //       console.log('home page r3 ' + r2.countnum);
+          //       if (parseInt(r2.countnum) >= 2) {
+          //         console.log('home page r2 ' + r2.countnum);
+          //         let toast = this.toastCtrl.create({
+          //           message: '课程：'+item.cnameAndID.courseName + '已旷课'+ r2.countnum +'次，超过该课程最大旷课数',
+          //           duration: 4000,
+          //           position: 'middle',
+          //           showCloseButton: true,
+          //           closeButtonText: 'OK'
+          //         });
+          //         toast.present();
+          //       }
+          //     });
+          //   });
+          // }
         }
       );
     });

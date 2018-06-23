@@ -15,13 +15,16 @@
 
 
   <ion-list no-lines="" class="courses">
-    <ion-list-header text-center="" style="font-size: 1.5em;">选择课程进行签到或请假</ion-list-header>
-
-    <button ion-button text-center outline block color="primary" *ngFor="let course of courses"
-            (click)="courseSelected($event, course)">
-      {{ course.cnameAndID.courseName }}
+    <ion-list-header text-center="" style="font-size: 1.5em;">今日课程<br>点击进行签到或请假</ion-list-header>
+  <div *ngFor="let course of courses">
+      <button ion-button text-center outline block color="primary"
+              (click)="courseSelected($event, course)">
+          {{ course.course_name}}<br>
+          第{{course.start_period}}-{{course.end_period}}节
+         <br>
+          {{ course.class_location }}
     </button>
-
+  </div>
   </ion-list>
 
 

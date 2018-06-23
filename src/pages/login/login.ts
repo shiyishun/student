@@ -43,25 +43,28 @@ export class LoginPage {
     //     this.globalStorage.getStorage('stuName');
     //   }
     // );
-    this.globalStorage.setStorage('stuId', this.user.name);
+
 
     this.loginData.postLogin(this.user.name, this.user.pwd).subscribe(
       result => {
 
-        this.isPass = result.state;
+        this.isPass = result.code;
 
-        if (this.isPass == '1') {
+        if (this.isPass == '0') {
           console.log('setRoot stage');
           let toast = this.toastCtrl.create({
             message: '登录成功',
             duration: 1000,
             position: 'bottom',
           });
+          this.globalStorage.setStorage('userId', result.data.userId);
+          this.globalStorage.setStorage('token', result.data.token);
+          this.globalStorage.setStorage('userName', result.data.userName);
           toast.present();
           loading.present();
           this.navCtrl.setRoot(HomePage);
         }
-        else if (this.isPass == '0') {
+        else if (this.isPass == '1') {
           let toast = this.toastCtrl.create({
             message: '学号不存在，请确认输入',
             duration: 2000,

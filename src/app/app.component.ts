@@ -12,6 +12,7 @@ import{GlobalStorage} from '../providers/global-storage'
 import{InfoPage} from '../pages/info/info'
 import {ScorePage} from '../pages/score/score'
 import {PositionPage} from "../pages/position/position";
+import {SchedulePage} from "../pages/schedule/schedule";
 
 @Component({
   templateUrl: 'app.html'
@@ -34,8 +35,9 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       {title: '首页', component: HomePage, icon: 'paintbucket'},
+      {title: '课程表', component: SchedulePage, icon: 'paintbucket'},
       {title: '考勤记录', component: InfoPage, icon: 'paintbucket'},
-      {title: '平时成绩', component: ScorePage, icon: 'paintbucket'},
+      {title: '学科成绩', component: ScorePage, icon: 'paintbucket'},
       {title: '退出登录', component: LoginPage, icon: 'paintbucket'}
     ];
 

@@ -10,8 +10,8 @@ import {GlobalStorage} from '../../providers/global-storage'
   templateUrl: 'position.html'
 })
 export class PositionPage {
-
-
+  uid:string;
+  w:string;
   homeItem: any;
 
   constructor(public toastCtrl: ToastController, public loadingCtrl: LoadingController,public globalStorage:GlobalStorage,
@@ -19,8 +19,8 @@ export class PositionPage {
 
 
     this.homeItem = navParams.get('item');
-
-    globalStorage.setStorage('courseName', this.homeItem.cnameAndID.courseName);
+    console.log(this.homeItem);
+    globalStorage.setStorage('courseName', this.homeItem);
 
   }
 
@@ -39,10 +39,13 @@ export class PositionPage {
     let loading = this.loadingCtrl.create({
       duration: 1000
     });
-    this.globalStorage.getStorage('stuId').then(res => {
-
-      this.redditService.updateCallTheRoll(res, '0*0', this.homeItem.cnameAndID.courseName, 2).subscribe(r => {
-        if(r.state == '1') {
+    this.globalStorage.getStorage('userId').then(res=>{
+      this.uid = res.toString();
+    });
+    this.globalStorage.getStorage('courseName').then(res => {
+        this.w="0*0";
+      this.redditService.updateCallTheRoll(res.course_id, this.uid, this.w, res.course_time_id, 1).subscribe(r => {
+        if(r.state == '0') {
           let toast = this.toastCtrl.create({
             message: '请假申请成功',
             duration: 1500,

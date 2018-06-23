@@ -10,11 +10,11 @@ import {RedditData} from '../../providers/reddit-data'
 export class ScorePage {
   qscores: any;
 
-  constructor(public questionData: RedditData, public globalStorage: GlobalStorage) {
+  constructor(public scoreService: RedditData, public globalStorage: GlobalStorage) {
     this.qscores = [];
-    globalStorage.getStorage('stuId').then(res => {
-      questionData.getQuestion('电子技术', res).subscribe(result => {
-        this.qscores = result.questions;
+    globalStorage.getStorage('userId').then(res => {
+      scoreService.getScore(res).subscribe(result => {
+        this.qscores = result.data;
         // console.log('score page ' + result.questions[0].score);
       })
     });
