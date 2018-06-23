@@ -11,8 +11,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class RedditData {
 
-  hurl = 'http://localhost:8080';
-  // hurl = 'http://119.29.60.141:8888';
+  //hurl = 'http://localhost:8080';
+  hurl = 'http://119.29.60.141:8888';
 
 
   constructor(public http: Http) {
