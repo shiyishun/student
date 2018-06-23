@@ -64,19 +64,9 @@ export class LoginPage {
           loading.present();
           this.navCtrl.setRoot(HomePage);
         }
-        else if (this.isPass == '1') {
-          let toast = this.toastCtrl.create({
-            message: '学号不存在，请确认输入',
-            duration: 2000,
-            position: 'middle',
-            showCloseButton: true,
-            closeButtonText: 'OK'
-          });
-          toast.present();
-        }
         else {
           let toast = this.toastCtrl.create({
-            message: '密码错误，请重输',
+            message: result.errmsg,
             duration: 2000,
             position: 'middle',
             showCloseButton: true,
