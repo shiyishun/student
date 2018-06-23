@@ -26,6 +26,9 @@ export class HomePage {
       stuData.getCoursesById(res).subscribe(
         result => {
           this.courses = result.data;
+          if (this.courses.length==0){
+            this.courses=0;
+          }
           // for(let item of result.marks) {
           //   this.courses.push(item);
           // }
@@ -57,7 +60,9 @@ export class HomePage {
     });
 
   }
-
+  refresh(){
+    this.navCtrl.setRoot(HomePage);
+  }
   courseSelected(event, course) {
     this.navCtrl.push(PositionPage, {
       item: course

@@ -26,6 +26,8 @@
     </button>
   </div>
   </ion-list>
-
+  <!--<ion-list-header text-center="" style="font-size: 1.5em;">当前无未签到课程，请刷新重试！</ion-list-header>-->
+  <div text-center="" [hidden]="courses != 0" class="card-subtitle-1">当前无未签到课程，请刷新重试！</div>
+  <button ion-button (click)="refresh()" block="true" class="login-button" color="#ffffff">刷新</button>
 
 </ion-content>
